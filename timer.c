@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h> // Include stdlib.h for exit()
 #include <unistd.h>
 
-void countdown_timer(int seconds) {
+void start_countdown(int seconds) {
     while (seconds > 0) {
         int mins = seconds / 60;
         int secs = seconds % 60;
@@ -15,10 +16,14 @@ void countdown_timer(int seconds) {
 
 int main() {
     int timer_duration;
-    printf("Enter the timer duration in seconds: ");
-    scanf("%d", &timer_duration);
 
-    countdown_timer(timer_duration);
+    printf("Enter the timer duration in seconds: ");
+    if (scanf("%d", &timer_duration) != 1 || timer_duration <= 0) {
+        printf("Invalid timer duration. Please enter a positive integer.\n");
+        exit(1);
+    }
+
+    start_countdown(timer_duration);
 
     return 0;
 }
