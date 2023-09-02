@@ -5,10 +5,18 @@ int main() {
     double num1, num2;
 
     printf("Enter an operator (+, -, *, /): ");
-    scanf("%c", &operator);
+    scanf(" %c", &operator); // Added a space before %c to consume any leading whitespace
+
+    if (operator != '+' && operator != '-' && operator != '*' && operator != '/') {
+        printf("Invalid operator. Please enter +, -, *, or /.\n");
+        return 1; // Return an error code
+    }
 
     printf("Enter two numbers: ");
-    scanf("%lf %lf", &num1, &num2);
+    if (scanf("%lf %lf", &num1, &num2) != 2) { // Check if both numbers were successfully scanned
+        printf("Invalid input. Please enter two valid numbers.\n");
+        return 1; // Return an error code
+    }
 
     switch (operator) {
         case '+':
