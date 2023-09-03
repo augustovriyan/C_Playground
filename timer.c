@@ -20,7 +20,7 @@ int main() {
     printf("Enter the timer duration in seconds: ");
     if (scanf("%d", &timer_duration) != 1 || timer_duration <= 0) {
         printf("Invalid timer duration. Please enter a positive integer.\n");
-        exit(1);
+        return 1; // Return an error code
     }
 
     start_countdown(timer_duration);
