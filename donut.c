@@ -5,6 +5,9 @@
 
 #define WIDTH 80
 #define HEIGHT 40
+#define A_INCREMENT 0.04
+#define B_INCREMENT 0.1
+#define CHARACTERS ".,-~:;=!*#$@"
 
 void clear_screen() {
     printf("\033[H\033[J"); // ANSI escape code to clear the screen
@@ -17,7 +20,7 @@ int main() {
     float B = 0.0;
 
     while (1) {
-        char output[HEIGHT][WIDTH+1];
+        char output[HEIGHT][WIDTH + 1];
 
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
@@ -27,7 +30,7 @@ int main() {
                 float d2 = 0.5 * cos(B);
                 float z = x * x + y * y;
                 int intensity = (int)(8 * ((d1 / sqrt(z + d2 * d2)) + 1));
-                output[i][j] = ".,-~:;=!*#$@"[intensity];
+                output[i][j] = CHARACTERS[intensity];
             }
             output[i][WIDTH] = '\0';
         }
@@ -37,8 +40,8 @@ int main() {
             printf("%s\n", output[i]);
         }
 
-        A += 0.04;
-        B += 0.1;
+        A += A_INCREMENT;
+        B += B_INCREMENT;
 
         usleep(100000); // Sleep for 100ms
     }
