@@ -1,22 +1,32 @@
 #include <stdio.h>
 
+char getOperator() {
+    char operator;
+    printf("Enter an operator (+, -, *, /): ");
+    scanf(" %c", &operator); // Added a space before %c to consume any leading whitespace
+    return operator;
+}
+
+double getNumber() {
+    double number;
+    printf("Enter a number: ");
+    scanf("%lf", &number);
+    return number;
+}
+
 int main() {
     char operator;
     double num1, num2;
 
-    printf("Enter an operator (+, -, *, /): ");
-    scanf(" %c", &operator); // Added a space before %c to consume any leading whitespace
-
-    if (operator != '+' && operator != '-' && operator != '*' && operator != '/') {
-        printf("Invalid operator. Please enter +, -, *, or /.\n");
-        return 1; // Return an error code
+    operator = getOperator();
+    
+    while (operator != '+' && operator != '-' && operator != '*' && operator != '/') {
+        printf("Invalid operator. Please enter +, -, *, or /: ");
+        operator = getOperator();
     }
 
-    printf("Enter two numbers: ");
-    if (scanf("%lf %lf", &num1, &num2) != 2) { // Check if both numbers were successfully scanned
-        printf("Invalid input. Please enter two valid numbers.\n");
-        return 1; // Return an error code
-    }
+    num1 = getNumber();
+    num2 = getNumber();
 
     switch (operator) {
         case '+':
