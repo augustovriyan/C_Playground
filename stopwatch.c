@@ -2,7 +2,7 @@
 #include <time.h>
 
 int main() {
-    time_t start_time = 0, end_time = 0;
+    clock_t start_time = 0, end_time = 0;
     int is_running = 0;
     char input;
 
@@ -19,18 +19,22 @@ int main() {
             if (!is_running) {
                 // Start the stopwatch
                 is_running = 1;
-                start_time = time(NULL);
+                start_time = clock();
                 printf("Stopwatch started.\n");
             } else {
                 // Stop the stopwatch and calculate elapsed time
                 is_running = 0;
-                end_time = time(NULL);
-                printf("Stopwatch stopped. Elapsed time: %ld seconds\n", end_time - start_time);
+                end_time = clock();
+                double elapsed_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+                printf("Stopwatch stopped. Elapsed time: %.2f seconds\n", elapsed_time);
             }
         } else if (input == 'r') {
             // Reset the stopwatch
             is_running = 0;
             printf("Stopwatch reset.\n");
+        } else {
+            // Handle invalid input
+            printf("Invalid input. Please use 's' to start/stop, 'r' to reset, or 'q' to quit.\n");
         }
         
         // Clear the input buffer
