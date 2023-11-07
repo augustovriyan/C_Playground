@@ -2,12 +2,7 @@
 
 // Function prototypes
 void printMenu();
-double convertCentimetersToMeters(double centimeters);
-double convertMetersToCentimeters(double meters);
-double convertCentimetersToInches(double centimeters);
-double convertInchesToCentimeters(double inches);
-double convertMetersToFeet(double meters);
-double convertFeetToMeters(double feet);
+double convertLength(double value, int choice);
 
 int main() {
     double value;
@@ -28,27 +23,11 @@ int main() {
         printf("Enter the value: ");
         scanf("%lf", &value);
 
-        switch (choice) {
-            case 1:
-                printf("%.2lf centimeters = %.2lf meters\n", value, convertCentimetersToMeters(value));
-                break;
-            case 2:
-                printf("%.2lf meters = %.2lf centimeters\n", value, convertMetersToCentimeters(value));
-                break;
-            case 3:
-                printf("%.2lf centimeters = %.2lf inches\n", value, convertCentimetersToInches(value));
-                break;
-            case 4:
-                printf("%.2lf inches = %.2lf centimeters\n", value, convertInchesToCentimeters(value));
-                break;
-            case 5:
-                printf("%.2lf meters = %.2lf feet\n", value, convertMetersToFeet(value));
-                break;
-            case 6:
-                printf("%.2lf feet = %.2lf meters\n", value, convertFeetToMeters(value));
-                break;
-            default:
-                printf("Invalid choice. Please select a valid option.\n");
+        double result = convertLength(value, choice);
+        if (result != -1) {
+            printf("%.2lf %s\n", value, choice % 2 == 1 ? "centimeters" : "meters", result);
+        } else {
+            printf("Invalid choice. Please select a valid option.\n");
         }
     }
 
@@ -64,26 +43,21 @@ void printMenu() {
     printf("6. Feet to Meters\n");
 }
 
-double convertCentimetersToMeters(double centimeters) {
-    return centimeters / 100.0;
-}
-
-double convertMetersToCentimeters(double meters) {
-    return meters * 100.0;
-}
-
-double convertCentimetersToInches(double centimeters) {
-    return centimeters / 2.54;
-}
-
-double convertInchesToCentimeters(double inches) {
-    return inches * 2.54;
-}
-
-double convertMetersToFeet(double meters) {
-    return meters * 3.281;
-}
-
-double convertFeetToMeters(double feet) {
-    return feet / 3.281;
+double convertLength(double value, int choice) {
+    switch (choice) {
+        case 1:
+            return value / 100.0;
+        case 2:
+            return value * 100.0;
+        case 3:
+            return value / 2.54;
+        case 4:
+            return value * 2.54;
+        case 5:
+            return value * 3.281;
+        case 6:
+            return value / 3.281;
+        default:
+            return -1; // Invalid choice
+    }
 }
