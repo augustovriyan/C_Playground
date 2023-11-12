@@ -25,7 +25,8 @@ int main() {
 
         double result = convertLength(value, choice);
         if (result != -1) {
-            printf("%.2lf %s\n", value, choice % 2 == 1 ? "centimeters" : "meters", result);
+            const char* unit = (choice % 2 == 1) ? "centimeters" : "meters";
+            printf("%.2lf %s = %.2lf %s\n", value, unit, result, unit);
         } else {
             printf("Invalid choice. Please select a valid option.\n");
         }
