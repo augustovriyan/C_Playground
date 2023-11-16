@@ -2,6 +2,7 @@
 #include <stdlib.h> // Include stdlib.h for exit()
 #include <unistd.h>
 
+// Function to start countdown timer
 void start_countdown(int seconds) {
     while (seconds > 0) {
         int mins = seconds / 60;
@@ -23,6 +24,7 @@ int main() {
         return 1; // Return an error code
     }
 
+    // Start countdown timer based on user input
     start_countdown(timer_duration);
 
     return 0;
