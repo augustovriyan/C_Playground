@@ -3,30 +3,46 @@
 // Function prototypes
 void printMenu();
 double convertLength(double value, int choice);
+void clearInputBuffer();
 
 int main() {
     double value;
-    int choice;
+    int choice, decimalPlaces;
 
     printf("Unit Converter - Length\n");
 
     while (1) {
         printMenu();
 
-        printf("Enter your choice (1-6, or 0 to exit): ");
-        scanf("%d", &choice);
+        printf("Enter your choice (1-8, or 0 to exit): ");
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input. Please enter a number.\n");
+            clearInputBuffer();
+            continue;
+        }
 
         if (choice == 0) {
             break; // Exit the program if the user chooses 0.
         }
 
         printf("Enter the value: ");
-        scanf("%lf", &value);
+        if (scanf("%lf", &value) != 1) {
+            printf("Invalid input. Please enter a valid number.\n");
+            clearInputBuffer();
+            continue;
+        }
+
+        printf("Enter the number of decimal places for the result: ");
+        if (scanf("%d", &decimalPlaces) != 1) {
+            printf("Invalid input. Using default decimal places.\n");
+            decimalPlaces = 2; // Default decimal places
+            clearInputBuffer();
+        }
 
         double result = convertLength(value, choice);
         if (result != -1) {
             const char* unit = (choice % 2 == 1) ? "centimeters" : "meters";
-            printf("%.2lf %s = %.2lf %s\n", value, unit, result, unit);
+            printf("%.*lf %s = %.*lf %s\n", decimalPlaces, value, unit, decimalPlaces, result, unit);
         } else {
             printf("Invalid choice. Please select a valid option.\n");
         }
@@ -42,6 +58,8 @@ void printMenu() {
     printf("4. Inches to Centimeters\n");
     printf("5. Meters to Feet\n");
     printf("6. Feet to Meters\n");
+    printf("7. Kilometers to Miles\n");
+    printf("8. Miles to Kilometers\n");
 }
 
 double convertLength(double value, int choice) {
@@ -58,7 +76,15 @@ double convertLength(double value, int choice) {
             return value * 3.281;
         case 6:
             return value / 3.281;
+        case 7:
+            return value * 0.621371; // Convert kilometers to miles
+        case 8:
+            return value / 0.621371; // Convert miles to kilometers
         default:
             return -1; // Invalid choice
     }
+}
+
+void clearInputBuffer() {
+    while (getchar() != '\n');
 }
