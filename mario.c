@@ -1,24 +1,30 @@
 #include <stdio.h>
 
+void printSpaces(int count) {
+    for (int i = 0; i < count; i++) {
+        printf(" ");
+    }
+}
+
+void printBlocks(int count) {
+    for (int i = 0; i < count; i++) {
+        printf("#");
+    }
+}
+
 void printPyramid(int height) {
     for (int i = 0; i < height; i++) {
         // Print leading spaces
-        for (int j = 0; j < height - i - 1; j++) {
-            printf(" ");
-        }
+        printSpaces(height - i - 1);
 
         // Print left half of the pyramid
-        for (int k = 0; k <= i; k++) {
-            printf("#");
-        }
+        printBlocks(i + 1);
 
         // Print a gap between the halves
         printf("  ");
 
         // Print right half of the pyramid
-        for (int l = 0; l <= i; l++) {
-            printf("#");
-        }
+        printBlocks(i + 1);
 
         // Move to the next line for the next row
         printf("\n");
