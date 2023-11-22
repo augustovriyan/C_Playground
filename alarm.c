@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include <unistd.h>
 
 void setAlarm(int seconds);
@@ -10,11 +9,8 @@ int main() {
 
     // Get user input for the number of seconds
     printf("Enter the number of seconds for the alarm: ");
-    scanf("%d", &seconds);
-
-    // Validate user input
-    if (seconds <= 0) {
-        printf("Invalid input. Please enter a positive number of seconds.\n");
+    if (scanf("%d", &seconds) != 1 || seconds <= 0) {
+        printf("Invalid input. Please enter a positive integer for the number of seconds.\n");
         return EXIT_FAILURE;
     }
 
