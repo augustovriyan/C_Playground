@@ -12,35 +12,39 @@ int main() {
     while (1) {
         input = getchar();
 
-        if (input == 'q') {
-            // Exit the loop and quit the program
-            break;
-        } else if (input == 's') {
-            if (!is_running) {
-                // Start the stopwatch
-                is_running = 1;
-                start_time = clock();
-                printf("Stopwatch started.\n");
-            } else {
-                // Stop the stopwatch and calculate elapsed time
+        switch (input) {
+            case 'q':
+                // Exit the loop and quit the program
+                printf("Goodbye!\n");
+                return 0;
+
+            case 's':
+                if (!is_running) {
+                    // Start the stopwatch
+                    is_running = 1;
+                    start_time = clock();
+                    printf("Stopwatch started.\n");
+                } else {
+                    // Stop the stopwatch and calculate elapsed time
+                    is_running = 0;
+                    end_time = clock();
+                    double elapsed_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+                    printf("Stopwatch stopped. Elapsed time: %.2f seconds\n", elapsed_time);
+                }
+                break;
+
+            case 'r':
+                // Reset the stopwatch
                 is_running = 0;
-                end_time = clock();
-                double elapsed_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
-                printf("Stopwatch stopped. Elapsed time: %.2f seconds\n", elapsed_time);
-            }
-        } else if (input == 'r') {
-            // Reset the stopwatch
-            is_running = 0;
-            printf("Stopwatch reset.\n");
-        } else {
-            // Handle invalid input
-            printf("Invalid input. Please use 's' to start/stop, 'r' to reset, or 'q' to quit.\n");
+                printf("Stopwatch reset.\n");
+                break;
+
+            default:
+                // Handle invalid input
+                printf("Invalid input. Please use 's' to start/stop, 'r' to reset, or 'q' to quit.\n");
         }
         
         // Clear the input buffer
         while ((input = getchar()) != '\n' && input != EOF);
     }
-
-    printf("Goodbye!\n");
-    return 0;
 }
