@@ -3,7 +3,7 @@
 #include <unistd.h>
 
 // Function to start countdown timer
-void start_countdown(int seconds) {
+void startCountdown(int seconds) {
     while (seconds > 0) {
         int mins = seconds / 60;
         int secs = seconds % 60;
@@ -16,18 +16,18 @@ void start_countdown(int seconds) {
 }
 
 int main() {
-    int timer_duration;
+    int timerDuration;
 
     // Get user input for timer duration with validation
     do {
         printf("Enter the timer duration in seconds (positive integer): ");
-    } while (scanf("%d", &timer_duration) != 1 || timer_duration <= 0);
+    } while (scanf("%d", &timerDuration) != 1 || timerDuration <= 0);
 
     // Provide initial information
-    printf("Starting countdown timer for %d seconds...\n", timer_duration);
+    printf("\nStarting countdown timer for %d seconds...\n", timerDuration);
 
     // Start countdown timer based on user input
-    start_countdown(timer_duration);
+    startCountdown(timerDuration);
 
     return 0;
 }
