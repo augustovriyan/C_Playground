@@ -10,7 +10,11 @@ char getOperator() {
 double getNumber() {
     double number;
     printf("Enter a number: ");
-    scanf("%lf", &number);
+    while (scanf("%lf", &number) != 1) {
+        // Input is not a valid double, clear the buffer
+        while (getchar() != '\n');
+        printf("Invalid input. Please enter a number: ");
+    }
     return number;
 }
 
