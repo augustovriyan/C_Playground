@@ -22,6 +22,7 @@ int main() {
         }
 
         if (choice == 0) {
+            printf("Exiting the program. Goodbye!\n");
             break; // Exit the program if the user chooses 0.
         }
 
