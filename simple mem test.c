@@ -4,6 +4,31 @@
 
 #define ARRAY_SIZE (1 << 20) // 1 MB
 
+// Function prototypes
+double measure_read_speed(int* array);
+double measure_write_speed(int* array);
+
+int main() {
+    int* array = (int*)malloc(ARRAY_SIZE * sizeof(int));
+
+    if (array == NULL) {
+        fprintf(stderr, "Memory allocation failed.\n");
+        return 1;
+    }
+
+    // Measure and print read speed
+    double read_time = measure_read_speed(array);
+    printf("Memory read speed: %.6f seconds\n", read_time);
+
+    // Measure and print write speed
+    double write_time = measure_write_speed(array);
+    printf("Memory write speed: %.6f seconds\n", write_time);
+
+    free(array);
+
+    return 0;
+}
+
 // Function to measure memory read speed
 double measure_read_speed(int* array) {
     clock_t start_time = clock();
@@ -25,25 +50,4 @@ double measure_write_speed(int* array) {
     clock_t end_time = clock();
 
     return ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
-}
-
-int main() {
-    int* array = (int*)malloc(ARRAY_SIZE * sizeof(int));
-
-    if (array == NULL) {
-        fprintf(stderr, "Memory allocation failed.\n");
-        return 1;
-    }
-
-    // Measure read speed
-    double read_time = measure_read_speed(array);
-    printf("Memory read speed: %.6f seconds\n", read_time);
-
-    // Measure write speed
-    double write_time = measure_write_speed(array);
-    printf("Memory write speed: %.6f seconds\n", write_time);
-
-    free(array);
-
-    return 0;
 }
