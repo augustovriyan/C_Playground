@@ -12,22 +12,26 @@ void printBlocks(int count) {
     }
 }
 
+void printPyramidRow(int height, int row) {
+    // Print leading spaces
+    printSpaces(height - row - 1);
+
+    // Print left half of the pyramid
+    printBlocks(row + 1);
+
+    // Print a gap between the halves
+    printf("  ");
+
+    // Print right half of the pyramid
+    printBlocks(row + 1);
+
+    // Move to the next line for the next row
+    printf("\n");
+}
+
 void printPyramid(int height) {
     for (int i = 0; i < height; i++) {
-        // Print leading spaces
-        printSpaces(height - i - 1);
-
-        // Print left half of the pyramid
-        printBlocks(i + 1);
-
-        // Print a gap between the halves
-        printf("  ");
-
-        // Print right half of the pyramid
-        printBlocks(i + 1);
-
-        // Move to the next line for the next row
-        printf("\n");
+        printPyramidRow(height, i);
     }
 }
 
