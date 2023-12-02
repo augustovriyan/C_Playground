@@ -41,7 +41,7 @@ int main() {
     // Calculate BMI
     bmi = weight / (height * height);
 
-    // Display the calculated BMI
+    // Display the calculated BMI with specified precision
     printf("Your BMI is: %.*f\n", BMI_PRECISION, bmi);
 
     return 0;
