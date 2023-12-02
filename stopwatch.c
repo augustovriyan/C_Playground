@@ -43,8 +43,14 @@ int main() {
                 // Handle invalid input
                 printf("Invalid input. Please use 's' to start/stop, 'r' to reset, or 'q' to quit.\n");
         }
-        
+
         // Clear the input buffer
-        while ((input = getchar()) != '\n' && input != EOF);
+        fflush(stdin);
+
+        // Add a small delay to reduce CPU usage
+        // This allows the program to sleep for a short period
+        // and reduces the number of iterations in the while loop
+        // Adjust the duration based on your preference
+        usleep(10000); // Sleep for 10 milliseconds
     }
 }
