@@ -9,12 +9,12 @@
 #define B_INCREMENT 0.1
 #define CHARACTERS ".,-~:;=!*#$@"
 
-void clear_screen() {
+void clearScreen() {
     printf("\033[H\033[J"); // ANSI escape code to clear the screen
 }
 
 int main() {
-    clear_screen();
+    clearScreen();
 
     float A = 0.0;
     float B = 0.0;
