@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+// Function to set the alarm for a specified number of seconds
 void setAlarm(int seconds);
 
 int main() {
@@ -9,6 +10,8 @@ int main() {
 
     // Get user input for the number of seconds
     printf("Enter the number of seconds for the alarm: ");
+
+    // Validate input
     if (scanf("%d", &seconds) != 1 || seconds <= 0) {
         printf("Invalid input. Please enter a positive integer for the number of seconds.\n");
         return EXIT_FAILURE;
