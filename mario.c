@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void printSpaces(int count) {
     for (int i = 0; i < count; i++) {
@@ -40,16 +41,15 @@ int main() {
 
     // Get user input for the height of the pyramid
     printf("Enter the height of the pyramid (1-8): ");
-    scanf("%d", &height);
-
+    
     // Validate user input
-    if (height < 1 || height > 8) {
+    if (scanf("%d", &height) != 1 || height < 1 || height > 8) {
         printf("Invalid input. Please enter a height between 1 and 8.\n");
-        return 1;  // Exit with an error code
+        return EXIT_FAILURE;
     }
 
     // Build and print the pyramid
     printPyramid(height);
 
-    return 0;  // Exit with success
+    return EXIT_SUCCESS;
 }
