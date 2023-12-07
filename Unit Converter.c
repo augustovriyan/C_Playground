@@ -4,8 +4,8 @@
 void printMenu();
 double convertLength(double value, int choice);
 void clearInputBuffer();
-void getUserInput(double* value, int* choice, int* decimalPlaces);
-void printResult(double value, double result, int choice, int decimalPlaces);
+void getUserInput(double *value, int *choice, int *decimalPlaces);
+void printResult(double value, double result, const char *unit, int decimalPlaces);
 void displayGoodbyeMessage();
 
 int main() {
@@ -26,7 +26,8 @@ int main() {
 
         double result = convertLength(value, choice);
         if (result != -1) {
-            printResult(value, result, choice, decimalPlaces);
+            const char *unit = (choice % 2 == 1) ? "centimeters" : "meters";
+            printResult(value, result, unit, decimalPlaces);
         } else {
             printf("Invalid choice. Please select a valid option.\n");
         }
@@ -36,17 +37,17 @@ int main() {
 }
 
 void printMenu() {
-    printf("1. Centimeters to Meters\n");
-    printf("2. Meters to Centimeters\n");
-    printf("3. Centimeters to Inches\n");
-    printf("4. Inches to Centimeters\n");
-    printf("5. Meters to Feet\n");
-    printf("6. Feet to Meters\n");
-    printf("7. Kilometers to Miles\n");
-    printf("8. Miles to Kilometers\n");
+    printf("1. Centimeters to Meters\n"
+           "2. Meters to Centimeters\n"
+           "3. Centimeters to Inches\n"
+           "4. Inches to Centimeters\n"
+           "5. Meters to Feet\n"
+           "6. Feet to Meters\n"
+           "7. Kilometers to Miles\n"
+           "8. Miles to Kilometers\n");
 }
 
-void getUserInput(double* value, int* choice, int* decimalPlaces) {
+void getUserInput(double *value, int *choice, int *decimalPlaces) {
     printf("Enter your choice (1-8, or 0 to exit): ");
     if (scanf("%d", choice) != 1) {
         printf("Invalid input. Please enter a number.\n");
@@ -73,13 +74,13 @@ void getUserInput(double* value, int* choice, int* decimalPlaces) {
     }
 }
 
-void printResult(double value, double result, int choice, int decimalPlaces) {
-    const char* unit = (choice % 2 == 1) ? "centimeters" : "meters";
+void printResult(double value, double result, const char *unit, int decimalPlaces) {
     printf("%.*lf %s = %.*lf %s\n", decimalPlaces, value, unit, decimalPlaces, result, unit);
 }
 
 void clearInputBuffer() {
-    while (getchar() != '\n');
+    while (getchar() != '\n')
+        ;
 }
 
 void displayGoodbyeMessage() {
