@@ -13,7 +13,7 @@ int main() {
 
     // Validate input
     if (scanf("%d", &seconds) != 1 || seconds <= 0) {
-        printf("Invalid input. Please enter a positive integer for the number of seconds.\n");
+        fprintf(stderr, "Invalid input. Please enter a positive integer for the number of seconds.\n");
         return EXIT_FAILURE;
     }
 
